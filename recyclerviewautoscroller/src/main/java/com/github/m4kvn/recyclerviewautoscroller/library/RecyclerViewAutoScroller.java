@@ -1,4 +1,4 @@
-package com.github.m4kvn.recyclerviewautoscroller;
+package com.github.m4kvn.recyclerviewautoscroller.library;
 
 import android.os.Handler;
 import androidx.annotation.CallSuper;
