@@ -1,0 +1,22 @@
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = POM_BINTRAY_NAME
+    publishedGroupId = 'com.m4kvn'
+    libraryName = 'recyclerview-autoscroller'
+    artifact = POM_ARTIFACT_ID
+    packagingType = POM_PACKAGING
+    libraryDescription = POM_DESCRIPTION
+    siteUrl = 'https://github.com/m4kvn/recyclerview-autoscroller'
+    gitUrl = 'https://github.com/m4kvn/recyclerview-autoscroller.git'
+    libraryVersion = POM_VERSION
+    developerId = 'm4kvn'
+    developerName = 'm4kvn'
+    developerEmail = 'fun.masahiro@gmail.com'
+    licenseName = 'MIT'
+    licenseUrl = 'https://raw.githubusercontent.com/m4kvn/recyclerview-autoscroller/master/LICENSE.md'
+    allLicenses = ["MIT"]
+}
+
+apply from: rootProject.file("jcenter/maven-install.gradle")
+apply from: rootProject.file("jcenter/bintray.gradle")

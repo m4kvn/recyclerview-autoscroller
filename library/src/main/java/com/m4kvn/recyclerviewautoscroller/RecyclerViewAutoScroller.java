@@ -1,4 +1,4 @@
-package com.github.m4kvn.recyclerviewautoscroller;
+package com.m4kvn.recyclerviewautoscroller;
 
 import android.os.Handler;
 
