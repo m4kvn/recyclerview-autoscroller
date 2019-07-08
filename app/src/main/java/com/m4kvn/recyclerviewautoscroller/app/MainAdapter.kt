@@ -27,7 +27,7 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     class ImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val image: ImageView = view.image
+        val image: ImageView = view.findViewById(R.id.image)
         val color: Int = Color.parseColor(mutableListOf<String>()
             .apply { repeat(6) { add(patterns.random()) } }
             .joinToString(separator = "", prefix = "#"))

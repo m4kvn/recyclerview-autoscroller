@@ -2,7 +2,7 @@
 
 recyclerview-autoscroll is a simple library to auto scroll RecyclerView.
 
-<img src="./images/image1.gif" height="400" />
+<img src="./images/image1.gif" height="400" /> <img src="./images/image2.gif" height="400" />
 
 ## Try it out:
 

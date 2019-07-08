@@ -5,23 +5,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.m4kvn.recyclerviewautoscroller.RecyclerViewAutoScroller
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private val adapter = MainAdapter()
-    private val autoScroller =
-        RecyclerViewAutoScroller(1000L, adapter.itemCount / 2)
+    private val autoScroller = RecyclerViewAutoScroller(1000L, adapter.itemCount / 2)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val recycler = findViewById<RecyclerView>(R.id.recycler)
         recycler.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         recycler.adapter = MainAdapter()
     }
 
     override fun onResume() {
         super.onResume()
+        val recycler = findViewById<RecyclerView>(R.id.recycler)
         autoScroller.start(recycler)
     }
 
