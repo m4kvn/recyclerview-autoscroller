@@ -12,6 +12,8 @@ implementation "com.m4kvn:recyclerview-autoscroller:0.1.0"
 
 ### Get started
 
+When use in activity and fragment, call `start` in onResume and call `stop` in onStop.
+
 ```kotlin
 val autoScroller = RecyclerViewAutoScroller(1000L, 0)
 
