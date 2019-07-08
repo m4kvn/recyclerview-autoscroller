@@ -17,14 +17,6 @@ When use in activity and fragment, call `start` in onResume and call `stop` in o
 ```kotlin
 val autoScroller = RecyclerViewAutoScroller(1000L, 0)
 
-override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-
-    recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-    recyclerView.adapter = adapter
-}
-
 override fun onResume() {
     super.onResume()
     autoScroller.start(recyclerView)
