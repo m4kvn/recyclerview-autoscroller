@@ -1,6 +1,7 @@
 package com.m4kvn.recyclerviewautoscroller;
 
 import android.os.Handler;
+import android.util.Log;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -38,7 +39,7 @@ public class RecyclerViewAutoScroller extends RecyclerView.OnScrollListener impl
         RecyclerView.Adapter adapter = recycler.getAdapter();
         if (adapter == null) return;
         int itemCount = adapter.getItemCount();
-        int suggestPos = getLastVisiblePosition(recycler) + 1;
+        int suggestPos = getSuggestedNextPosition(recycler);
         recycler.smoothScrollToPosition((itemCount > suggestPos) ? suggestPos : 0);
         recycler.setFocusable(false);
         handler.postDelayed(this, delayMillis);
@@ -79,7 +80,7 @@ public class RecyclerViewAutoScroller extends RecyclerView.OnScrollListener impl
         RecyclerView recycler = running.getReference();
         if (recycler != null) {
             pause();
-            lastPosition.set(getLastVisiblePosition(recycler));
+            lastPosition.set(getSuggestedNextPosition(recycler));
             running.set(null, false);
         }
     }
@@ -97,10 +98,12 @@ public class RecyclerViewAutoScroller extends RecyclerView.OnScrollListener impl
         }
     }
 
-    private int getLastVisiblePosition(@NonNull RecyclerView recycler) {
+    private int getSuggestedNextPosition(@NonNull RecyclerView recycler) {
         RecyclerView.LayoutManager layoutManager = recycler.getLayoutManager();
         if (layoutManager instanceof LinearLayoutManager) {
-            return ((LinearLayoutManager) layoutManager).findLastCompletelyVisibleItemPosition();
+            LinearLayoutManager llm = ((LinearLayoutManager) layoutManager);
+            int completeVisiblePos = llm.findLastCompletelyVisibleItemPosition();
+            return (completeVisiblePos >= 0) ? completeVisiblePos + 1 : llm.findLastVisibleItemPosition();
         } else {
             return -1;
         }
