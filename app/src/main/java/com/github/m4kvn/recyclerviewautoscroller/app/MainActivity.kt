@@ -1,4 +1,4 @@
-package com.github.m4kvn.recyclerviewautoscroller
+package com.github.m4kvn.recyclerviewautoscroller.app
 
 import android.graphics.Color
 import android.os.Bundle
@@ -9,7 +9,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.github.m4kvn.recyclerviewautoscroller.library.RecyclerViewAutoScroller
+import com.github.m4kvn.recyclerviewautoscroller.RecyclerViewAutoScroller
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_image.view.*
 

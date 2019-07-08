@@ -1,14 +1,15 @@
-package com.github.m4kvn.recyclerviewautoscroller.library;
+package com.github.m4kvn.recyclerviewautoscroller;
 
 import android.os.Handler;
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicMarkableReference;
+
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewAutoScroller extends RecyclerView.OnScrollListener implements Runnable {
     private long delayMillis;
