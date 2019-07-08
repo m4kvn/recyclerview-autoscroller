@@ -1,1 +1,1 @@
-# RecyclerViewAutoScroller
+# recyclerview-autoscroller
