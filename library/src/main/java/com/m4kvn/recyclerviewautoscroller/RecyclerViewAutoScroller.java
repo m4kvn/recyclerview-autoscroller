@@ -1,11 +1,11 @@
 package com.m4kvn.recyclerviewautoscroller;
 
 import android.os.Handler;
-import android.util.Log;
+import android.os.Parcelable;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicMarkableReference;
+import java.util.concurrent.atomic.AtomicReference;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
@@ -16,7 +16,7 @@ public class RecyclerViewAutoScroller extends RecyclerView.OnScrollListener impl
     private long delayMillis;
     private int initialPosition;
     private AtomicBoolean isInitialized;
-    private AtomicInteger lastPosition;
+    private AtomicReference<Parcelable> lastState;
     private AtomicMarkableReference<RecyclerView> running;
     private Handler handler;
 
@@ -27,7 +27,7 @@ public class RecyclerViewAutoScroller extends RecyclerView.OnScrollListener impl
         this.delayMillis = delayMillis;
         this.initialPosition = initialPosition;
         this.isInitialized = new AtomicBoolean(false);
-        this.lastPosition = new AtomicInteger(0);
+        this.lastState = new AtomicReference<>(null);
         this.running = new AtomicMarkableReference<>(null, false);
         this.handler = new Handler();
     }
@@ -49,7 +49,7 @@ public class RecyclerViewAutoScroller extends RecyclerView.OnScrollListener impl
     public void start(@NonNull RecyclerView recycler) {
         if (running.getReference() == null) {
             if (isInitialized.get()) {
-                recycler.scrollToPosition(lastPosition.get());
+                restoreState(recycler);
             } else {
                 recycler.scrollToPosition(initialPosition);
                 isInitialized.set(true);
@@ -80,7 +80,7 @@ public class RecyclerViewAutoScroller extends RecyclerView.OnScrollListener impl
         RecyclerView recycler = running.getReference();
         if (recycler != null) {
             pause();
-            lastPosition.set(getSuggestedNextPosition(recycler));
+            saveState(recycler);
             running.set(null, false);
         }
     }
@@ -106,6 +106,21 @@ public class RecyclerViewAutoScroller extends RecyclerView.OnScrollListener impl
             return (completeVisiblePos >= 0) ? completeVisiblePos + 1 : llm.findLastVisibleItemPosition();
         } else {
             return -1;
+        }
+    }
+
+    private void saveState(@NonNull RecyclerView recycler) {
+        RecyclerView.LayoutManager layoutManager = recycler.getLayoutManager();
+        if (layoutManager != null) {
+            lastState.set(layoutManager.onSaveInstanceState());
+        }
+    }
+
+    private void restoreState(@NonNull RecyclerView recycler) {
+        RecyclerView.LayoutManager layoutManager = recycler.getLayoutManager();
+        Parcelable state = lastState.get();
+        if (layoutManager != null && state != null) {
+            layoutManager.onRestoreInstanceState(state);
         }
     }
 }
