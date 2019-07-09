@@ -1,6 +1,5 @@
 package com.github.m4kvn.recyclerviewautoscroller.example
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,14 +27,6 @@ class MainAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class ImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView = view.findViewById(R.id.image)
-        val color: Int = Color.parseColor(mutableListOf<String>()
-            .apply { repeat(6) { add(patterns.random()) } }
-            .joinToString(separator = "", prefix = "#"))
-
-        companion object {
-            private val patterns = arrayOf(
-                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"
-            )
-        }
+        val color: Int = Util.getRandomColor()
     }
 }

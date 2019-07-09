@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">example</string>
     <string name="horizontal">HORIZONTAL</string>
+    <string name="wrap">WRAP</string>
+    <string name="banner">BANNER</string>
+    <string name="fill">FILL</string>
 </resources>
