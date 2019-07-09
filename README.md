@@ -15,7 +15,8 @@ implementation "com.m4kvn:recyclerview-autoscroller:0.1.0"
 When use in activity and fragment, call `start` in onResume and call `stop` in onStop.
 
 ```kotlin
-val autoScroller = RecyclerViewAutoScroller(1000L, 0)
+val initialPosition = adapter.itemCount / 2
+val autoScroller = RecyclerViewAutoScroller(1000L, initialPosition)
 
 override fun onResume() {
     super.onResume()
