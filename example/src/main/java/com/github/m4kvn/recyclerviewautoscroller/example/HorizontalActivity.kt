@@ -38,8 +38,8 @@ class HorizontalActivity : AppCompatActivity() {
                     parent: RecyclerView,
                     state: RecyclerView.State
                 ) {
-                    val right = resources.getDimensionPixelOffset(R.dimen.x1)
-                    outRect.set(0, 0, right, 0)
+                    val x1 = resources.getDimensionPixelOffset(R.dimen.x1)
+                    outRect.set(x1 / 2, 0, x1 / 2, 0)
                 }
             })
         }
